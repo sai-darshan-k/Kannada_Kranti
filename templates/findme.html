@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Keyword in Kannada Text</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4; /* Light gray background */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+            background: #fff; /* White background for the form */
+            padding: 20px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333; /* Dark text for visibility */
+        }
+
+        input[type="file"], input[type="text"] {
+            margin: 20px 0;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #5cb85c; /* Bootstrap green color */
+            color: white; /* White text color */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        button:hover {
+            background-color: #4cae4c; /* Darker green on hover */
+        }
+
+        .error {
+            color: red; /* Red color for error messages */
+        }
+
+        .success {
+            color: green; /* Green color for success messages */
+        }
+
+        .result-text {
+            text-align: left;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            white-space: pre-wrap; /* Preserve line breaks */
+        }
+
+        mark {
+            background-color: yellow; /* Highlight color */
+            font-weight: bold;
+        }
+
+        .go-back {
+            background-color: #007bff; /* Bootstrap primary color */
+            margin-top: 20px; /* Margin above the button */
+        }
+
+        .go-back:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Style for the uploaded image */
+        #uploadedImage {
+            margin-top: 20px;
+            max-width: 100%; /* Make sure image is responsive */
+            height: auto; /* Maintain aspect ratio */
+            border: 1px solid #ccc; /* Add border for image */
+            border-radius: 8px; /* Rounded corners */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Keyword in Kannada Text</h1>
+        <form id="findKeywordForm" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" id="fileInput" required>
+            <input type="text" name="keyword" placeholder="Enter keyword in English or Kannada" required>
+            <button type="submit">Find Keyword</button>
+        </form>
+        <img id="uploadedImage" src="" alt="Uploaded Image" style="display: none;"> <!-- Image element -->
+        <div id="result"></div>
+        <div class="result-text" id="highlightedText"></div> <!-- Container for highlighted text -->
+        <button class="go-back" onclick="window.history.back()">Go Back</button> <!-- Go Back button -->
+    </div>
+
+    <script>
+        const form = document.getElementById('findKeywordForm');
+        const fileInput = document.getElementById('fileInput');
+        const uploadedImage = document.getElementById('uploadedImage');
+        const highlightedImage = document.getElementById('highlightedImage'); // Reference to the highlighted image
+    
+        // Display the uploaded image when a file is selected
+        fileInput.onchange = function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    uploadedImage.src = event.target.result; // Set image source to uploaded file
+                    uploadedImage.style.display = 'block'; // Show the image
+                }
+                reader.readAsDataURL(file); // Convert file to Data URL
+            }
+        };
+    
+        form.onsubmit = async (e) => {
+            e.preventDefault();  // Prevent the default form submission
+    
+            const formData = new FormData(form);
+            const response = await fetch('/find_keyword', {
+                method: 'POST',
+                body: formData
+            });
+    
+            const result = await response.json();
+    
+            // Display result in the result div
+            if (response.ok) {
+                if (result.keyword_found) {
+                    document.getElementById('result').innerText = `Keyword found!`;
+                    document.getElementById('result').className = 'success'; // Set success class
+                    document.getElementById('highlightedText').innerHTML = result.highlighted_text; // Display highlighted text
+    
+                    // Set highlighted image source and display it
+                    highlightedImage.src = result.highlighted_image_path; // Set the source of the highlighted image
+                    highlightedImage.style.display = 'block'; // Show the highlighted image
+                } else {
+                    document.getElementById('result').innerText = `Keyword not found.`;
+                    document.getElementById('result').className = 'error'; // Set error class
+                    document.getElementById('highlightedText').innerHTML = ''; // Clear previous results
+    
+                    // Clear highlighted image
+                    highlightedImage.style.display = 'none'; // Hide the highlighted image
+                }
+            } else {
+                document.getElementById('result').innerText = `Error: ${result.error}`;
+                document.getElementById('result').className = 'error'; // Set error class
+            }
+        };
+    </script>
+    
+    
+</body>
+</html>

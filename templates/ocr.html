@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kannada OCR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4; /* Light gray background */
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+            background: #fff; /* White background for the form */
+            padding: 20px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333; /* Dark text for visibility */
+        }
+        input[type="file"] {
+            margin: 20px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #5cb85c; /* Bootstrap green color */
+            color: white; /* White text color */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+        button:hover {
+            background-color: #4cae4c; /* Darker green on hover */
+        }
+        .result {
+            margin-top: 20px;
+            color: #333; /* Dark text for visibility */
+        }
+        .error {
+            color: red; /* Red color for error messages */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload an Image for Text Extraction</h1>
+        <form id="ocrForm" method="POST" enctype="multipart/form-data" action="/extract_text">
+            <input type="file" name="file" required>
+            <button type="submit">Extract Text</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('ocrForm');
+        form.onsubmit = async (e) => {
+            e.preventDefault();  // Prevent the default form submission
+
+            const formData = new FormData(form);
+            const response = await fetch('/extract_text', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            // Display result in the result div
+            if (response.ok) {
+                document.getElementById('result').innerText = `Extracted Text: ${result.extracted_text}`;
+            } else {
+                document.getElementById('result').innerText = `Error: ${result.error}`;
+                document.getElementById('result').className = 'error'; // Set error class
+            }
+        };
+    </script>
+</body>
+</html>

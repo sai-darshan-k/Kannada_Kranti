@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writer Identification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4; /* Light gray background */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+            background: #fff; /* White background for the form */
+            padding: 20px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333; /* Dark text for visibility */
+        }
+
+        input[type="file"] {
+            margin: 20px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #5cb85c; /* Bootstrap green color */
+            color: white; /* White text color */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        button:hover {
+            background-color: #4cae4c; /* Darker green on hover */
+        }
+
+        .error {
+            color: red; /* Red color for error messages */
+        }
+
+        .success {
+            color: green; /* Green color for success messages */
+        }
+
+        .go-back {
+            background-color: #007bff; /* Bootstrap primary color */
+            margin-top: 20px; /* Margin above the button */
+        }
+
+        .go-back:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload an Image to Identify the Writer</h1>
+        <form id="uploadForm" method="POST" enctype="multipart/form-data" action="/predict">
+            <input type="file" name="file" required>
+            <button type="submit">Identify Writer</button>
+        </form>
+        <div id="result"></div>
+        <button class="go-back" onclick="window.history.back()">Go Back</button> <!-- Go Back button -->
+    </div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        form.onsubmit = async (e) => {
+            e.preventDefault();  // Prevent the default form submission
+
+            const formData = new FormData(form);
+            const response = await fetch('/predict', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            // Display result in the result div
+            if (response.ok) {
+                document.getElementById('result').innerText = `Predicted Writer: ${result.predicted_writer}`;
+                document.getElementById('result').className = 'success'; // Set success class
+            } else {
+                document.getElementById('result').innerText = `Error: ${result.error}`;
+                document.getElementById('result').className = 'error'; // Set error class
+            }
+        };
+    </script>
+</body>
+</html>

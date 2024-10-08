@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kannada Hackathon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='ka.png') }}" alt="Akshara" class="emblem">
+            <h1 class="title">
+                <span class="kannada">ನ್ನಡ </span>
+                <span class="hackathon"> ಕ್ರಾಂತಿ</span>
+            </h1>
+        </div>
+        <img src="{{ url_for('static', filename='clogo.png') }}" alt="Christ Logo" class="christ-logo">
+    </header>
+
+    <!-- Tagline Section -->
+    <h2 class="tagline">ಕನ್ನಡವೇ ಸತ್ಯ - ಕನ್ನಡವೇ ನಿತ್ಯ</h2>
+
+    <!-- Navigation Section -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Moving Text Section -->
+    <section class="moving-text-container">
+        <p class="moving-text">ಕನ್ನಡ ಕ್ರಾಂತಿ - ಕನ್ನಡ ಭಾಷೆಗಾಗಿ ತಂತ್ರಜ್ಞಾನದ ಬೆಳವಣಿಗೆಗೆ ಸಮರ್ಪಿತವಾಗಿದೆ. ನಮ್ಮ ಪ್ರಧಾನ ಉದ್ದೇಶವು ಉನ್ನತ OCR ತಂತ್ರಜ್ಞಾನಗಳ ಮೂಲಕ ಚಿತ್ರಗಳು ಮತ್ತು PDF ಕಡತಗಳಿಂದ ಪಠ್ಯವನ್ನು ಉತ್ತಮಗೊಳಿಸುವುದು. ಇದಕ್ಕೆ ಸೇರಿ, ಕನ್ನಡ ಪಠ್ಯಗಳಿಗೆ ಬರಹ ಗುರುತಿಸುವಿಕೆ ಮತ್ತು ಕೀವರ್ಡ್ ಶೋಧ ಹೀಗೆ ಹೊಸ ಪರಿಹಾರಗಳನ್ನು ಪರಿಚಯಿಸಲು ಆಶಿಸುತ್ತೇವೆ.</p>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards">
+        <div class="card">
+            <img src="https://img.icons8.com/color/96/000000/document.png" alt="Image to Text Icon">
+            <h2>Image to Text Extraction</h2>
+            <p>Extract text from Kannada images using advanced OCR technology.</p>
+            <button onclick="window.location.href='{{ url_for('ocr') }}'">Try Now</button> <!-- Updated here -->
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='writer.png') }}" alt="Identify Writer Icon">
+            <h2>Identify Writer</h2>
+            <p>Identify the writer of Kannada manuscripts and handwritten text.</p>
+            <button onclick="window.location.href='{{ url_for('identify_writer') }}'">Try Now</button>
+        </div>
+
+        <div class="card">
+            <img src="https://img.icons8.com/color/96/000000/search.png" alt="Keyword Search Icon">
+            <h2>Keyword Search</h2>
+            <p>Search through Kannada text files using custom keyword search.</p>
+            <button onclick="window.location.href='{{ url_for('findme') }}'">Try Now</button>
+        </div>
+    </section>
+
+<!-- About and Contact Section -->
+<section class="about-contact">
+    <div class="about" id="about"> <!-- Added id="about" here -->
+        <h2>About Us</h2>
+        <p>We are a team dedicated to advancing technology for the Kannada language. Our mission is to enhance accessibility and usability of Kannada texts through innovative solutions like OCR and handwriting recognition.</p>
+        <p>Our goal is to promote the Kannada language and culture by integrating technology into daily use cases, making it easier for people to interact with Kannada content.</p>
+    </div>
+
+    <div class="contact" id="contact"> <!-- Added id="contact" here -->
+        <h2>Contact Us</h2>
+        <p>If you have any questions or suggestions, feel free to reach out!</p>
+        <p>Email: <a href="mailto:saidarshan9632@gmail.com">saidarshan9632@gmail.com</a></p>
+        <p>Phone: +91 9632568029</p>
+        <p>Address: Kannada Hackathon, 123 Street Name, City, State, Country</p>
+    </div>
+</section>
+
+
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Kannada Hackathon. All rights reserved.</p>
+    </footer>
+</body>
+</html>
