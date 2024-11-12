@@ -45,8 +45,8 @@ This project is a Flask web application designed to perform three main tasks:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/kannada-writer-identification.git
-   cd kannada-writer-identification
+   git clone https://github.com/sai-darshan-k/kannada_kranti.git
+   cd kannada_kranti
    ```
 
 2. Install dependencies:
