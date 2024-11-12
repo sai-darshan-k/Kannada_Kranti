@@ -3,6 +3,7 @@ This project is a Flask web application designed to perform three main tasks:
 1. **Writer Identification**: Predict the writer based on uploaded handwriting samples.
 2. **OCR (Optical Character Recognition)**: Extract Kannada and English text from images.
 3. **Keyword Search**: Search for keywords in the extracted text, including keyword mappings between English and Kannada.
+![Screenshot (328)](https://github.com/user-attachments/assets/8a9315b5-52f8-4e3a-8e44-20c7ae99ea7a)
 
 ## Table of Contents
 - [Features](#features)
@@ -22,6 +23,7 @@ This project is a Flask web application designed to perform three main tasks:
 - **Writer Identification**: Predicts the writer's name from handwriting samples using a trained deep learning model.
 - **OCR with EasyOCR**: Extracts Kannada and English text from images using EasyOCR.
 - **Keyword Search**: Allows users to search and highlight specific keywords in the extracted text, including automatic keyword mapping between English and Kannada.
+![Screenshot (329)](https://github.com/user-attachments/assets/16e526b8-8fa5-44c0-9e8e-442941eb5f1f)
 
 ---
 
@@ -122,7 +124,3 @@ Contributions are welcome! Please submit a pull request or open an issue for sug
 ## License
 
 This project is licensed under the MIT License.
-
---- 
-
-Let me know if you'd like to add any additional sections or details!
