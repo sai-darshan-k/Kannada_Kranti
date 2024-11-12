@@ -1,13 +1,10 @@
-Here's a README.md for GitHub, structured to explain each functionality (OCR, Writer Identification, and Keyword Search) in detail.
-
----
-
-# Kannada Writer Identification and Keyword Search
 
 This project is a Flask web application designed to perform three main tasks:
 1. **Writer Identification**: Predict the writer based on uploaded handwriting samples.
 2. **OCR (Optical Character Recognition)**: Extract Kannada and English text from images.
 3. **Keyword Search**: Search for keywords in the extracted text, including keyword mappings between English and Kannada.
+
+![Screenshot (328)](https://github.com/user-attachments/assets/df3ef5e0-042e-4911-a2ae-cb7341bb95e7)
 
 ## Table of Contents
 - [Features](#features)
@@ -27,6 +24,8 @@ This project is a Flask web application designed to perform three main tasks:
 - **Writer Identification**: Predicts the writer's name from handwriting samples using a trained deep learning model.
 - **OCR with EasyOCR**: Extracts Kannada and English text from images using EasyOCR.
 - **Keyword Search**: Allows users to search and highlight specific keywords in the extracted text, including automatic keyword mapping between English and Kannada.
+
+![Screenshot 2024-11-12 201429](https://github.com/user-attachments/assets/adb693d3-cbfd-4657-b703-c68589ea5060)
 
 ---
 
@@ -54,8 +53,6 @@ This project is a Flask web application designed to perform three main tasks:
    pip install -r requirements.txt
    ```
 
-3. Download the trained Keras model `final_writer_identification_model.keras` and place it in the project directory.
-
 ---
 
 ## Usage
@@ -75,12 +72,19 @@ Open your browser and navigate to `http://127.0.0.1:5000` to access the applicat
 1. Go to the **OCR** page.
 2. Upload an image containing Kannada and/or English text.
 3. The app will use EasyOCR to extract text from the image and display it on the screen.
+   
+![Screenshot 2024-10-13 212942](https://github.com/user-attachments/assets/750c1a29-532a-4504-88cc-f2e1bacd20b0)
 
 ### Writer Identification
 
 1. Go to the **Writer Identification** page.
 2. Upload an image of handwriting.
+
+   ![Screenshot (317)](https://github.com/user-attachments/assets/0ac24cc0-939f-4656-b419-726229dd2b4e)
+   
 3. The application will preprocess the image, pass it through a trained deep learning model, and return the predicted writer along with a confidence score.
+   
+![Screenshot 2024-10-02 232357](https://github.com/user-attachments/assets/fe98a236-7869-48cb-bdb5-289c948b6d8d)
 
 ### Keyword Search
 
@@ -89,7 +93,10 @@ Open your browser and navigate to `http://127.0.0.1:5000` to access the applicat
 3. The app will highlight the keyword if it appears in the text.
    - If the English keyword has a mapped Kannada word, the Kannada version will also be searched for and highlighted.
 
+![Screenshot 2024-10-07 230108](https://github.com/user-attachments/assets/b5cc2957-61cc-4463-b03b-b3f9668d0a84)
 ---
+
+
 
 ## Endpoints
 
@@ -127,7 +134,3 @@ Contributions are welcome! Please submit a pull request or open an issue for sug
 ## License
 
 This project is licensed under the MIT License.
-
---- 
-
-Let me know if you'd like to add any additional sections or details!
