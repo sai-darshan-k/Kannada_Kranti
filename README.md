@@ -1,8 +1,3 @@
-Here's a README.md for GitHub, structured to explain each functionality (OCR, Writer Identification, and Keyword Search) in detail.
-
----
-
-# Kannada Writer Identification and Keyword Search
 
 This project is a Flask web application designed to perform three main tasks:
 1. **Writer Identification**: Predict the writer based on uploaded handwriting samples.
